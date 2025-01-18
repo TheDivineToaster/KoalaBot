@@ -3,6 +3,7 @@ import asyncio
 from discord.ext import commands
 from randoms import Randoms
 from weather import Weather
+import os
 
 description = """KoalaBot!"""
 
@@ -97,4 +98,4 @@ async def pollwinner(ctx, poll_str):
     else:
         await ctx.send('No votes were cast in this poll.')
 
-bot.run('DISCORD_API_KEY')
+bot.run(os.environ['DISCORD_API_KEY'])

@@ -2,6 +2,7 @@ import json
 import requests
 import time
 from discord.ext import commands
+import os
 
 
 # The weather information is a class so that all the commands can be neatly contained inside it
@@ -53,7 +54,7 @@ class Weather(commands.Cog):
         # making api call to GET weather with the latitude and logitude from nominatum search
         # using imperial format as a default, as a future possiblity I may give the user the option for
         # metric units but the code does not currently support it
-        openWeatherapiKey = 'OPEN_WEATHER_API_KEY'
+        openWeatherapiKey = os.environ['OPEN_WEATHER_API_KEY']
         openWeatherUrl = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={openWeatherapiKey}'
         weather = requests.get(openWeatherUrl)
 
@@ -102,7 +103,7 @@ class Weather(commands.Cog):
             await ctx.send('No data found for this search')
 
         # now making the api call to GET sunrise and sunset with the latitude and logitude from nominatum search
-        openWeatherapiKey = 'OPEN_WEATHER_API_KEY'
+        openWeatherapiKey = os.environ['OPEN_WEATHER_API_KEY']
         openWeatherUrl = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid={openWeatherapiKey}'
         weather = requests.get(openWeatherUrl)
 
